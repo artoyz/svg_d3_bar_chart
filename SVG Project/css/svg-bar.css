@@ -1,0 +1,15 @@
+/*
+CSS for svg-bar.js
+*/
+/* 
+    Created on : 2016/04/29, 23:46:50
+    Author     : Arthur
+*/
+
+.bar {
+    pointer-events: all;
+    -webkit-transition: fill 0.5s;
+    transition: fill 0.5s;
+    -webkit-transition: 1s ease;
+    transition: 1s ease;
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>D3 SVG Demo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/svg-bar.css">
+        <script src="js/jquery.js"></script>
+        <script src="js/d3.min.js"></script>
+        <script src="js/svg-bar.js"></script>
+    </head>
+    <body>
+        <div>
+            <input id="txtInput" type="text" value="10,30,20,17,24,4"/>
+            <button id="btnOk">Update</button>
+        </div>
+        <br>
+        <br>
+        <div id="chartDiv">
+        
+        </div>
+        <br><br>
+        <div id="chartDiv2">
+        
+        </div>
+        
+        <script>
+            var barChart = new SvgBar("chartDiv", 400, 200);
+            var barChart2 = new SvgBar("chartDiv2", 400, 400);
+            barChart2.barColor = "green";
+            barChart2.barHighlightColor = "red";
+            
+            renderDashboard();
+            
+            
+            $("#btnOk").click(function() {
+               renderDashboard();
+            });
+            
+            
+            function renderDashboard() {
+                var input = $("#txtInput").val();
+                var rawData = input.split(',');
+                var rawDataLen = rawData.length;
+                var barData = [];
+                for(var i = 0; i < rawDataLen; i++) {
+                    barData.push(Number(rawData[i]));
+                }
+               
+                barChart.draw(barData);
+                
+                barChart.onClick = function(elem, data, index) {
+                    renderSubDashboard(data);
+                };
+                
+                barChart.onHover = function(elem, data, index) {
+                    $(elem).css("cursor", "pointer");  
+                };
+            }
+            
+            function renderSubDashboard(data) {
+                var barData = [];
+                for(var i = data; i > 0; i--) {
+                    barData.push(i);
+                }
+                barChart2.draw(barData);
+            }
+            
+            
+        </script>
+        
+    </body>
+    
+    
+    
+</html>
