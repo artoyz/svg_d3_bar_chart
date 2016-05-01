@@ -10,9 +10,11 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/svg-bar.css">
+        <link rel="stylesheet" href="css/svg-pie.css">
         <script src="js/jquery.js"></script>
         <script src="js/d3.min.js"></script>
         <script src="js/svg-bar.js"></script>
+        <script src="js/svg-pie.js"></script>
     </head>
     <body>
         <div>
@@ -26,12 +28,18 @@ and open the template in the editor.
         </div>
         <br><br>
         <div id="chartDiv2">
+           
+        </div>
+        <br><br>
+        <div id="chartDiv3">
         
         </div>
         
         <script>
             var barChart = new SvgBar("chartDiv", 400, 200);
-            var barChart2 = new SvgBar("chartDiv2", 400, 400);
+            var barChart2 = new SvgBar("chartDiv3", 400, 200);
+            var pieChart = new SvgPie("chartDiv2", 100);
+            
             barChart2.barColor = "green";
             barChart2.barHighlightColor = "red";
             
@@ -69,6 +77,11 @@ and open the template in the editor.
                     barData.push(i);
                 }
                 barChart2.draw(barData);
+                
+                var otherPie = 100 - data;
+                var pieData = [data, otherPie];
+                pieChart.draw(pieData);
+                
             }
             
             
